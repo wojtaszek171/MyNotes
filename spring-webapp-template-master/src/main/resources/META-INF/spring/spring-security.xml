@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <sec:http auto-config="true" use-expressions="true">
+        <sec:form-login login-page="/login" />
+        <sec:intercept-url pattern="/login"
+            access="permitAll" />
+        <sec:form-login login-page="/register" />
+        <sec:intercept-url pattern="/xxxxxx/yyyyyy/zzzzzz/app/login"
+                           access="permitAll" />
+        <sec:intercept-url pattern="/register"
+                           access="permitAll" />
+        <sec:intercept-url pattern="/resources/**"
+            access="permitAll" />
+        <sec:intercept-url pattern="/res/**"
+                           access="permitAll"/>
+
+        <sec:intercept-url pattern="/**"
+            access="hasRole('ROLE_ADMIN')" />
+    </sec:http>
+
+    <sec:authentication-manager>
+
+        <sec:authentication-provider>
+            <sec:password-encoder hash="md5"/>
+            <sec:jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query=
+                                       "select USER_NAME, USER_PASSWORD, true from user where USER_NAME=?"
+                               authorities-by-username-query=
+                                       "select USER_NAME, 'ROLE_ADMIN' from user where USER_NAME =?  " />
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+</beans>
