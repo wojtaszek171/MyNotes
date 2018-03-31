@@ -1,12 +1,12 @@
 <!DOCTYPE logback>
 <configuration>
-    <appender title="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern><![CDATA[date:%d{yyyy-MM-dd HH:mm:ss}\tthread:%thread\tlevel:%-5level\tlogger:%-48logger{48}\tmsg:%msg%n]]></pattern>
         </encoder>
     </appender>
 
-    <appender title="ROLLING"
+    <appender name="ROLLING"
         class="ch.qos.logback.core.rolling.RollingFileAppender">
         <Encoding>UTF-8</Encoding>
         <File>log/projectName.log</File>
@@ -22,59 +22,59 @@
     </appender>
 
     <!-- Application Loggers -->
-    <logger title="xxxxxx.yyyyyy.zzzzzz">
+    <logger name="xxxxxx.yyyyyy.zzzzzz">
         <level value="debug" />
     </logger>
 
     <!-- 3rdparty Loggers -->
-    <logger title="org.springframework.core">
+    <logger name="org.springframework.core">
         <level value="warn" />
     </logger>
 
-    <logger title="org.springframework.beans">
+    <logger name="org.springframework.beans">
         <level value="warn" />
     </logger>
 
-    <logger title="org.springframework.context">
+    <logger name="org.springframework.context">
         <level value="warn" />
     </logger>
 
-    <logger title="org.springframework.web">
+    <logger name="org.springframework.web">
         <level value="warn" />
     </logger>
 
-    <logger title="org.springframework.web.servlet">
+    <logger name="org.springframework.web.servlet">
         <level value="info" />
     </logger>
 
     <logger
-        title="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        name="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <level value="info" />
     </logger>
 
-    <logger title="org.springframework.security.core.userdetails">
+    <logger name="org.springframework.security.core.userdetails">
         <level value="debug" />
     </logger>
 
     <!-- for hibernate3 -->
-    <logger title="org.hibernate.transaction">
+    <logger name="org.hibernate.transaction">
         <level value="debug" />
     </logger>
 
     <!-- for hibernate4 -->
-    <logger title="org.hibernate.engine.transaction">
+    <logger name="org.hibernate.engine.transaction">
         <level value="debug" />
     </logger>
 
-    <logger title="org.hibernate.cfg.annotations.QueryBinder">
+    <logger name="org.hibernate.cfg.annotations.QueryBinder">
         <level value="debug" />
     </logger>
 
-    <logger title="org.hibernate.tool">
+    <logger name="org.hibernate.tool">
         <level value="debug" />
     </logger>
 
-    <logger title="jdbc.sqltiming">
+    <logger name="jdbc.sqltiming">
         <level value="debug" />
     </logger>
 

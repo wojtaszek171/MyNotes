@@ -56,16 +56,16 @@ body {
     
 </script>
 <c:set var="titleKey">
-    <tiles:insertAttribute title="title" ignore="true" />
+    <tiles:insertAttribute name="title" ignore="true" />
 </c:set>
 <title><spring:message code="${titleKey}" text="MyNotes" /></title>
 <%--<tiles:insertAttribute title="header" />--%>
 </head>
 <body>
     <div id="container" class="container">
-        <tiles:insertAttribute title="header" />
-        <div id="body"><tiles:insertAttribute title="body" /></div>
-        <tiles:insertAttribute title="footer" />
+        <tiles:insertAttribute name="header" />
+        <div id="body"><tiles:insertAttribute name="body" /></div>
+        <tiles:insertAttribute name="footer" />
     </div>
 </body>
 </html>

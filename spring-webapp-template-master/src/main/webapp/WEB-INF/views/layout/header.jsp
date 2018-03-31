@@ -12,7 +12,11 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="/main">Home</a></li>
 			</ul>
+            <ul style="float: right" class="nav navbar-nav">
+                <li ><a href="/main">user</a></li>
+            </ul>
 		</div>
+
 		<!--/.nav-collapse -->
 	</div>
 </div>

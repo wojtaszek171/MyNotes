@@ -30,7 +30,7 @@
             <mvc:mapping path="/**" />
             <bean
                 class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-                <property title="paramName" value="locale"></property>
+                <property name="paramName" value="locale"></property>
             </bean>
         </mvc:interceptor>
     </mvc:interceptors>
@@ -39,18 +39,18 @@
 
     <bean id="viewResolver"
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property title="prefix" value="/WEB-INF/views/" />
-        <property title="suffix" value=".jsp" />
-        <property title="order" value="2" />
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+        <property name="order" value="2" />
     </bean>
 
     <bean
         class="org.springframework.web.servlet.view.tiles2.TilesViewResolver">
-        <property title="order" value="1" />
+        <property name="order" value="1" />
     </bean>
 
     <bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
-        <property title="definitions">
+        <property name="definitions">
             <list>
                 <value>/WEB-INF/tiles/tiles-definitions.xml</value>
             </list>
@@ -58,25 +58,25 @@
     </bean>
 
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-        <property title="order" value="1" />
+        <property name="order" value="1" />
     </bean>
 
     <bean
         class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property title="order" value="1" />
-        <property title="exceptionMappings">
+        <property name="order" value="1" />
+        <property name="exceptionMappings">
             <util:map>
                 <entry key="ResourceNotFoundException" value="notFoundError" />
             </util:map>
         </property>
-        <property title="statusCodes">
+        <property name="statusCodes">
             <util:map>
                 <entry key="notFoundError" value="404" />
             </util:map>
         </property>
-        <property title="defaultStatusCode" value="500" />
-        <property title="defaultErrorView" value="systemError" />
-        <property title="warnLogCategory"
+        <property name="defaultStatusCode" value="500" />
+        <property name="defaultErrorView" value="systemError" />
+        <property name="warnLogCategory"
             value="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" />
     </bean>
 

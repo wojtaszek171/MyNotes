@@ -11,7 +11,7 @@
 
     <bean id="messageSource"
         class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property title="basenames">
+        <property name="basenames">
             <list>
                 <value>i18n/application-messages</value>
             </list>
@@ -23,9 +23,9 @@
     <bean id="passwordEncoder"
         class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
     </bean>
-    
+
     <bean class="org.dozer.spring.DozerBeanMapperFactoryBean">
-        <property title="mappingFiles"
+        <property name="mappingFiles"
             value="classpath*:/META-INF/dozer/**/*-mapping.xml" />
     </bean>
 </beans>

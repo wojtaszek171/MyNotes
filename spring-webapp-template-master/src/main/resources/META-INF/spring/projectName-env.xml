@@ -10,26 +10,26 @@
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property title="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property title="url" value="jdbc:mysql://localhost:3306/mynotes?useUnicode=true&amp;characterEncoding=UTF-8" />
-        <property title="username" value="root" />
-        <property title="password" value="" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/mynotes?useUnicode=true&amp;characterEncoding=UTF-8" />
+        <property name="username" value="root" />
+        <property name="password" value="" />
     </bean>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <property title="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dataSource"></property>
     </bean>
 
     <bean id="userService" class="xxxxxx.yyyyyy.zzzzzz.domain.service.user.UserServiceImpl">
-        <property title="userDAO" ref="UserDAO"></property>
+        <property name="userDAO" ref="UserDAO"></property>
     </bean>
     <bean id="UserDAO" class="xxxxxx.yyyyyy.zzzzzz.domain.service.user.UserDAO">
-        <property title="jdbcTemplate" ref="jdbcTemplate"></property>
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>
 
-    <!-- <jee:jndi-lookup id="dataSource" jndi-title="jdbc/dataSource"></jee:jndi-lookup> -->
+    <!-- <jee:jndi-lookup id="dataSource" jndi-name="jdbc/dataSource"></jee:jndi-lookup> -->
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property title="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
