@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta title="viewport" content="width=device-width, initial-scale=1">
+    <meta title="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/vendor/bootstrap/dist/css/bootstrap.css" />
@@ -17,22 +17,22 @@
         <div class="wrapper">
             <div class="divForm">
             <h3>Zaloguj się</h3>
-            <form class="loginForm" name='f'
+            <form class="loginForm" title='f'
                 action='${pageContext.request.contextPath}/j_spring_security_check'
                 method='POST'>
                 <table class="loginTable">
                     <tr>
                         <td>Nazwa użytkownika:</td>
-                        <td><input type='text' name='j_username'
+                        <td><input type='text' title='j_username'
                             value=''></td>
                     </tr>
                     <tr>
                         <td>Hasło:</td>
-                        <td><input type='password' name='j_password'
+                        <td><input type='password' title='j_password'
                             value="" /></td>
                     </tr>
                     <tr>
-                        <td colspan='2'><input name="submit" type="submit"
+                        <td colspan='2'><input title="submit" type="submit"
                             value="Zaloguj" /></td>
                     </tr>
                 </table>

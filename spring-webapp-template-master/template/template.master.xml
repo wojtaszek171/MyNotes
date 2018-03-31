@@ -1,6 +1,6 @@
 <template>
   <descriptor id="xxxxxx.yyyyyy.zzzzzz"
-	      name="Spring Template Web Application"
+	      title="Spring Template Web Application"
 	      kind="template"
 	      version="${version}">
     <description>

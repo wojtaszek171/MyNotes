@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width" />
+<meta title="viewport" content="width=device-width" />
 <link rel="stylesheet"
     href="${pageContext.request.contextPath}/resources/vendor/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet"
@@ -28,6 +28,25 @@ body {
 .my-horizontal.form-horizontal input[type="password"] {
   width: 360px;
 }
+html,
+body {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+#container {
+    min-height:100%;
+    position:relative;
+    /*height:100%;*/
+}
+#body {
+    padding-bottom:60px;   /* Height of the footer */
+}
+#footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+}
 </style>
 <script type="text/javascript"
     src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
@@ -37,22 +56,16 @@ body {
     
 </script>
 <c:set var="titleKey">
-    <tiles:insertAttribute name="title" ignore="true" />
+    <tiles:insertAttribute title="title" ignore="true" />
 </c:set>
 <title><spring:message code="${titleKey}" text="MyNotes" /></title>
-<tiles:insertAttribute name="header" />
+<%--<tiles:insertAttribute title="header" />--%>
 </head>
 <body>
-    <div class="container">
-        <tiles:insertAttribute name="header" />
-        <tiles:insertAttribute name="body" />
-        <hr>
-        <div class="row">
-            <div class="col-lg-12">
-                <p style="text-align: center; background: #e5eCf9;">Copyright
-                    &copy; 2018 MyNotes</p>
-            </div>
-        </div>
+    <div id="container" class="container">
+        <tiles:insertAttribute title="header" />
+        <div id="body"><tiles:insertAttribute title="body" /></div>
+        <tiles:insertAttribute title="footer" />
     </div>
 </body>
 </html>

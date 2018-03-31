@@ -3,11 +3,11 @@
   xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
   <jsp:output omit-xml-declaration="yes" />
 
-  <jsp:directive.attribute name="page"
+  <jsp:directive.attribute title="page"
     type="org.springframework.data.domain.Page" required="true"
     rtexprvalue="true" />
 
-  <jsp:directive.attribute name="query" type="java.lang.String"
+  <jsp:directive.attribute title="query" type="java.lang.String"
     required="false" rtexprvalue="true" />
 
   <c:set var="currentIndex" value="${page.number + 1}" />
