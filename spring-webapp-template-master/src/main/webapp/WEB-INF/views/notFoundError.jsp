@@ -22,8 +22,7 @@ body {
         <p class="alert alert-danger">
           [<c:choose><c:when test="${not empty exceptionCode}">${f:h(exceptionCode)}</c:when><c:otherwise>${f:h(param.exceptionCode)}</c:otherwise></c:choose>]
           Your request is not found...<br /> <a
-            href="${pageContext.request.contextPath}" class="btn btn-default">Go
-            to TOP</a>
+            href="${pageContext.request.contextPath}" class="btn btn-default">Go to TOP</a>
         </p>
       </div>
     </div>

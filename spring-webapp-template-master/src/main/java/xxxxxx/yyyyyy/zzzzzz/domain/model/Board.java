@@ -34,7 +34,7 @@ public class Board implements Serializable {
     private Blob background;
 
     @Column(name = "ID_USER",  nullable = false, length = 64)
-    private String id_user;
+    private Integer id_user;
 
     @Column(name = "CREATED_AT", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -77,11 +77,11 @@ public class Board implements Serializable {
         this.background = background;
     }
 
-    public String getId_user() {
+    public Integer getId_user() {
         return id_user;
     }
 
-    public void setId_user(String id_user) {
+    public void setId_user(Integer id_user) {
         this.id_user = id_user;
     }
 

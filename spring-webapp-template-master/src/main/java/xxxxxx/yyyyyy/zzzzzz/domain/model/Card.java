@@ -34,10 +34,10 @@ public class Card implements Serializable {
     private Blob background;
 
     @Column(name = "CARD_X",  nullable = true, length = 64)
-    private String x;
+    private Integer x;
 
     @Column(name = "CARD_Y",  nullable = true, length = 64)
-    private String y;
+    private Integer y;
 
     @Column(name = "ID_BOARD",  nullable = false, length = 64)
     private String id_board;
@@ -82,19 +82,19 @@ public class Card implements Serializable {
         this.background = background;
     }
 
-    public String getX() {
+    public Integer getX() {
         return x;
     }
 
-    public void setX(String x) {
+    public void setX(Integer x) {
         this.x = x;
     }
 
-    public String getY() {
+    public Integer getY() {
         return y;
     }
 
-    public void setY(String y) {
+    public void setY(Integer y) {
         this.y = y;
     }
 

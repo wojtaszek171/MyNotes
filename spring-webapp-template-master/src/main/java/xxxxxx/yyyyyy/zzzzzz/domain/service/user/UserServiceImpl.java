@@ -27,4 +27,9 @@ public class UserServiceImpl{
         return getUserDAO().selectAll();
     }
 
+    public Integer getUserIdByName(String user) {
+        return getUserDAO().getUserIdByName(user);
+    }
+
+    public String getCurrentUserName() {return getUserDAO().getCurrentUserName();}
 }

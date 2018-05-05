@@ -27,6 +27,13 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>
 
+    <bean id="boardService" class="xxxxxx.yyyyyy.zzzzzz.domain.service.board.BoardService">
+        <property name="boardDAO" ref="BoardDAO"></property>
+    </bean>
+    <bean id="BoardDAO" class="xxxxxx.yyyyyy.zzzzzz.domain.service.board.BoardDAO">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+
     <!-- <jee:jndi-lookup id="dataSource" jndi-name="jdbc/dataSource"></jee:jndi-lookup> -->
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
