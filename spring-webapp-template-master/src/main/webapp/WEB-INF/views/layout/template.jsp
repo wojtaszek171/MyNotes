@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta title="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <link rel="stylesheet"
     href="${pageContext.request.contextPath}/resources/vendor/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet"

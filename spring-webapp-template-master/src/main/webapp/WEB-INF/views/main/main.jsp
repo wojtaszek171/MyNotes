@@ -91,7 +91,7 @@ function amIclicked(e, element)
                     <li><a data-toggle="modal" data-target="#deleteModal" onclick="changeModal(<%=board.getId()%>,'<%=board.getName()%>')">Usuń</a></li>
                 </ul>
             </div>
-            <p><%=board.getName()%></p>
+            <p onclick="if(amIclicked(event,this)){location.href='./board?id=<%=board.getId()%>'}"><%=board.getName()%></p>
         </div>
         <%
             }

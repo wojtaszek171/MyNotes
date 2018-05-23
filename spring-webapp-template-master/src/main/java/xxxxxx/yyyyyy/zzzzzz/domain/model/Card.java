@@ -40,7 +40,7 @@ public class Card implements Serializable {
     private Integer y;
 
     @Column(name = "ID_BOARD",  nullable = false, length = 64)
-    private String id_board;
+    private int id_board;
 
     @Column(name = "CREATED_AT", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -98,11 +98,11 @@ public class Card implements Serializable {
         this.y = y;
     }
 
-    public String getId_board() {
+    public int getId_board() {
         return id_board;
     }
 
-    public void setId_board(String id_board) {
+    public void setId_board(int id_board) {
         this.id_board = id_board;
     }
 
