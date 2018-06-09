@@ -81,4 +81,14 @@ public class BoardDAO {
         return false;
     }
 
+    public boolean editUserBoard(Integer boardId, Integer id, String name) {
+        Board board = getUserBoard(id, boardId);
+        if(board.getId()!=null){
+            SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            String deleteQuery = "UPDATE BOARD SET BOARD_NAME = ? WHERE BOARD_ID = ?";
+            getJdbcTemplate().update(deleteQuery,new Object[]{name,boardId});
+            return true;
+        }
+        return false;
+    }
 }

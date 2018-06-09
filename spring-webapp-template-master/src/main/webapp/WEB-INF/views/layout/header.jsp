@@ -18,8 +18,8 @@
 			<a class="navbar-brand" href="/main">MyNotes</a>
 		</div>
 		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="/main">Home</a></li>
+			<ul class="nav navmenu-left navbar-nav">
+				<li><a href="/main">Home</a></li>
 			</ul>
             <ul style="float: right" class="nav navbar-nav">
                 <li><a href="/main?userId=<%=id%>"><%=username%></a></li>

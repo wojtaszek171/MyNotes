@@ -33,7 +33,7 @@ public class Note implements Serializable {
     private Integer position;
 
     @Column(name = "ID_CARD",  nullable = false, length = 64)
-    private String id_card;
+    private Integer id_card;
 
     @Column(name = "CREATED_AT", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -76,11 +76,11 @@ public class Note implements Serializable {
         this.position = position;
     }
 
-    public String getId_card() {
+    public int getId_card() {
         return id_card;
     }
 
-    public void setId_card(String id_card) {
+    public void setId_card(int id_card) {
         this.id_card = id_card;
     }
 

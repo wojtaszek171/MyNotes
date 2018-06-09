@@ -15,7 +15,9 @@
     href="${pageContext.request.contextPath}/resources/vendor/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet"
     href="${pageContext.request.contextPath}/resources/vendor/bootstrap/dist/css/bootstrap-theme.css" />
-<style type="text/css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/res/css/style.css">
+
+    <style type="text/css">
 body {
     padding-top: 60px;
     /* 60px to make the container go all the way to the bottom of the topbar */

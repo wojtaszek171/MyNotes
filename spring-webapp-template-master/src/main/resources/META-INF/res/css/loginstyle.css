@@ -41,3 +41,8 @@ html, body{
 .loginTable{
     text-align: center;
 }
+
+#board-content{
+    margin-top: 50px;
+    display: inline-block;
+}

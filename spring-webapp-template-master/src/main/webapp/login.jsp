@@ -8,7 +8,7 @@
           href="${pageContext.request.contextPath}/resources/vendor/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/vendor/bootstrap/dist/css/bootstrap-theme.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/res/css/logincss.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/res/css/loginstyle.css">
     <title>Login Page</title>
 </head>
 <body onload='document.f.j_username.focus();'>

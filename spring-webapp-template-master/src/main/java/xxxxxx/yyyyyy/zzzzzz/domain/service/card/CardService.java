@@ -22,4 +22,6 @@ public class CardService {
     }
 
     public ArrayList<Card> getCards(int idBoard) {return getCardDAO().getCards(idBoard);}
+
+    public boolean deleteCard(int idUser, int idCard) {return getCardDAO().deleteCard(idUser,idCard);}
 }

@@ -27,4 +27,8 @@ public class BoardService {
     public Board getUserBoard(Integer userId, Integer boardId){return getBoardDAO().getUserBoard(userId,boardId); }
 
     public void deleteUserBoard(Integer boardId, Integer userId){getBoardDAO().deleteUserBoard(boardId, userId);}
+
+    public void editUserBoard(Integer boardId, Integer id, String name) {
+        getBoardDAO().editUserBoard(boardId, id, name);
+    }
 }

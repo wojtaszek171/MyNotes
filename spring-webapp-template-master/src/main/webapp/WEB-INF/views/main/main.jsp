@@ -7,9 +7,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <script>
+    $(".navmenu-left li").first().addClass("active");
     function changeModal(id, name) {
         $("#deletehref").attr("onclick", "location.href='./main/delete?id="+id+"'");
         $("#deletename").text('Na pewno chcesz usunąć tablicę "'+name.toString()+'" ?');
+    }
+    function changeEditModal(id, name) {
+        $("#edithref").attr("href", "/main/edit?id="+id);
+        $("#editname").val(name.toString());
+    }
+    function submitEdit(name) {
+        $('#edithref').attr("onclick", location.href=$('#edithref').attr("href")+"&name="+name);
     }
 
 function amIclicked(e, element)
@@ -78,6 +86,26 @@ function amIclicked(e, element)
     </div>
 </div>
 
+<div id="editModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Zmień nazwę tablicy</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="editname"/>
+                <button id="edithref" class="btn btn-default" style="color: red" onclick="submitEdit($('#editname').val())">Zmień</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" >Zamknij</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <div class="col-sm-12">
     <div id="boards">
         <%
@@ -88,6 +116,7 @@ function amIclicked(e, element)
             <div class="dropdown_item" style="position: absolute; right: 10px; top: 10px;">
                 <img data-toggle="dropdown" style="width: 20px; height: 20px;" src="../res/media/dotsMenu.png">
                 <ul class="dropdown-menu">
+                    <li><a data-toggle="modal" data-target="#editModal" onclick="changeEditModal(<%=board.getId()%>,'<%=board.getName()%>')">Edytuj</a></li>
                     <li><a data-toggle="modal" data-target="#deleteModal" onclick="changeModal(<%=board.getId()%>,'<%=board.getName()%>')">Usuń</a></li>
                 </ul>
             </div>

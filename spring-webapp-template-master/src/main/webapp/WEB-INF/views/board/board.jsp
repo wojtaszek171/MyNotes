@@ -1,9 +1,15 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="xxxxxx.yyyyyy.zzzzzz.domain.model.Card" %>
+<%@ page import="xxxxxx.yyyyyy.zzzzzz.domain.model.Note" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <script>
+    var boardName = '${boardname}';
+    var boardId = '${boardid}';
+
     $(document).ready(function() {
+        //$( "#card" ).draggable({containment: "parent"});
         $("#showPalette").spectrum({
             showPaletteOnly: true,
             showPalette:true,
@@ -13,6 +19,19 @@
             ]
         });
         $("#showPalette").spectrum("set","rgb(0, 128, 0)");
+
+        $(".navmenu-left li").last().after('<li class="active"><a>${boardname}</a></li>');
+        $(document).click(function(evt){
+            if(evt.target.class == "addNoteForm"){
+                console.log("click inside");
+            }
+            //For descendants of menu_content being clicked, remove this check if you do not want to put constraint on descendants.
+            if (!$(event.target).closest('#addNote').length) {
+                $('.addNoteForm').addClass('hiddenForm');
+                console.log("click outside");
+            }else {console.log("click inside");}
+        });
+
     });
 
     function changeModal(id, name) {
@@ -58,7 +77,6 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -83,29 +101,38 @@
     </div>
 </div>
 
+
 <div class="col-sm-12">
-    <div id="addCard" style="background-color: lightgray; font-size: 20px; font-weight: bold; text-align: center; line-height: 30px; color: #5e5e5e" data-toggle="modal" class="btn btn-default" data-target="#myModal">Nowa kartka</div>
+    <div id="addCard" style="position:absolute; background-color: lightgray; font-size: 20px; font-weight: bold; text-align: center; line-height: 30px; color: #5e5e5e" data-toggle="modal" class="btn btn-default" data-target="#myModal">Nowa kartka</div>
     <% if(request.getAttribute("error")!=null){
     %>
-        <%=request.getAttribute("error")%>
+        <span style="color: red; font-weight: bold">request.getAttribute("error")</span>
     <%
     }%>
 
-    <%
-        ArrayList<Card> cards = (ArrayList<Card>) request.getAttribute("cards");
-        for (Card card: cards) {
-    %>
-    <div id="card" style="background-color: <%=card.getColor()%>">
-        <div class="dropdown_item" style="position: absolute; right: 10px; top: 10px;">
-            <img data-toggle="dropdown" style="width: 20px; height: 20px;" src="../res/media/dotsMenu.png">
-            <ul class="dropdown-menu">
-                <li><a data-toggle="modal" data-target="#deleteModal" onclick="changeModal(<%=card.getId()%>,'<%=card.getTitle()%>')">Usuń</a></li>
-            </ul>
+    <div id="board-content">
+        <%
+            ArrayList<Card>  cards = (ArrayList<Card>) request.getAttribute("cards");
+            for (Card card: cards) {
+        %>
+        <div id="card" style="background-color: <%=card.getColor()%>">
+            <div class="dropdown_item" style="position: absolute; right: 10px; top: 10px;">
+                <img data-toggle="dropdown" style="width: 20px; height: 20px;" src="../res/media/dotsMenu.png">
+                <ul class="dropdown-menu">
+                    <li><a data-toggle="modal" data-target="#deleteModal" onclick="changeModal(<%=card.getId()%>,'<%=card.getTitle()%>')">Usuń</a></li>
+                </ul>
+            </div>
+            <div class="cardHeader"><%=card.getTitle()%></div>
+
+            <div id="addNote">
+                <form  name="card<%=card.getId()%>" action="/board/addNote" method="post" class="addNoteForm hiddenForm"><input style="display: none" type="text" name="cardId" value="<%=card.getId()%>"/><input required style="max-width: 87%; min-width: 79%" type="text" name="note"/><input type="submit" value="&check;"/></form>
+                <button class="addNoteButton" onclick="$('.addNoteForm[name=card<%=card.getId()%>]').removeClass('hiddenForm')">+</button>
+            </div>
+
         </div>
-        <p><%=card.getTitle()%></p>
+        <%
+            }
+        %>
     </div>
-    <%
-        }
-    %>
 </div>
 

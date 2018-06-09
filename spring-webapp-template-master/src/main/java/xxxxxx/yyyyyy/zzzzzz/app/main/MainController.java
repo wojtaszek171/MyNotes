@@ -43,6 +43,16 @@ public class MainController {
         return "redirect:/main";
     }
 
+    @RequestMapping(value = "/edit")
+    public String editBoard(ModelMap model, @RequestParam("id") String idBoard, @RequestParam("name") String name) {
+        UserServiceImpl userService = (UserServiceImpl) context.getBean("userService");
+        String username = userService.getCurrentUserName();
+        Integer id = userService.getUserIdByName(username);
+        BoardService boardService = (BoardService) context.getBean("boardService");
+        boardService.editUserBoard(Integer.valueOf(idBoard),id, name);
+        return "redirect:/main";
+    }
+
     @RequestMapping(value = "/new_board", params = "createBoard", method = RequestMethod.POST)
     public String createBoard(@RequestParam("name") String name, @RequestParam("color") String color) {
         UserServiceImpl userService = (UserServiceImpl) context.getBean("userService");
