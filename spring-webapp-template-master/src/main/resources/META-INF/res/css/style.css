@@ -79,6 +79,7 @@
 .deletenotelink:hover{
     color: white;
     opacity: 1;
+    text-decoration: none;
 }
 
 .addNoteForm{
