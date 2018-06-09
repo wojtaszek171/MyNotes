@@ -84,3 +84,10 @@
 .addNoteForm{
     width: auto;
 }
+
+@media (max-width: 900px) {
+    #card{
+        left: auto !important;
+        top: auto !important;
+    }
+}
