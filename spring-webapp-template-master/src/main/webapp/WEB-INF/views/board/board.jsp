@@ -65,7 +65,7 @@
             <div class="modal-body">
                 <form action="/board/new_card/" method="post">
                     <table>
-                        <tr><td>Tytuł kartki:</td><td><input type="text" required name="cardTitle"></td></tr>
+                        <tr><td>Tytuł kartki(opcjonalne):</td><td><input type="text" name="cardTitle"></td></tr>
                         <tr><td>Kolor:</td><td><input id="showPalette" type="text" name="cardColor"></td></tr>
                         <input type="text" name="boardId" value="<%= request.getParameter("id") %>" style="visibility: hidden">
                         <%--<tr><td>Tło:</td><td><input type="text" name="name"></td></tr>--%>
@@ -115,21 +115,46 @@
             ArrayList<Card>  cards = (ArrayList<Card>) request.getAttribute("cards");
             for (Card card: cards) {
         %>
-        <div id="card" style="background-color: <%=card.getColor()%>">
+        <div id="card" name="card<%=card.getId()%>" style="left:<%=card.getX()%>; top: <%=card.getY()%>;  background-color: <%=card.getColor()%>">
             <div class="dropdown_item" style="position: absolute; right: 10px; top: 10px;">
                 <img data-toggle="dropdown" style="width: 20px; height: 20px;" src="../res/media/dotsMenu.png">
                 <ul class="dropdown-menu">
                     <li><a data-toggle="modal" data-target="#deleteModal" onclick="changeModal(<%=card.getId()%>,'<%=card.getTitle()%>')">Usuń</a></li>
                 </ul>
             </div>
+            <%
+                if(card.getTitle()!=""){
+            %>
             <div class="cardHeader"><%=card.getTitle()%></div>
-
+            <%
+                }
+                Map<Integer, ArrayList<Note>> notes = (Map<Integer, ArrayList<Note>>) request.getAttribute("cardswithnotes");
+                if(notes.get(card.getId()).size()!=0){
+                ArrayList<Note> cardNotes = notes.get(card.getId());
+            %>
+            <ul class="note">
+            <%
+                for (Note note:cardNotes) {
+            %>
+                <li class="" id="note<%=note.getId()%>}"><%=note.getText()%><a class="deletenotelink" href="/board/deleteNote?id=<%=note.getId()%>">&cross;</a></li>
+            <%
+                    }
+                }
+            %>
+            </ul>
             <div id="addNote">
                 <form  name="card<%=card.getId()%>" action="/board/addNote" method="post" class="addNoteForm hiddenForm"><input style="display: none" type="text" name="cardId" value="<%=card.getId()%>"/><input required style="max-width: 87%; min-width: 79%" type="text" name="note"/><input type="submit" value="&check;"/></form>
                 <button class="addNoteButton" onclick="$('.addNoteForm[name=card<%=card.getId()%>]').removeClass('hiddenForm')">+</button>
             </div>
-
         </div>
+        <script>
+        $('#card[name=card<%=card.getId()%>]').draggable({containment: "parent",
+            stop: function( event, ui ) {
+                var x = $("#card[name=card<%=card.getId()%>]").css("left");
+                var y = $("#card[name=card<%=card.getId()%>]").css("top");
+                window.location.href = "/board/replace?id=<%=card.getId()%>&x="+x+"&y="+y;
+        }});
+        </script>
         <%
             }
         %>

@@ -2,7 +2,9 @@ package xxxxxx.yyyyyy.zzzzzz.app.board;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,7 +20,9 @@ import xxxxxx.yyyyyy.zzzzzz.domain.service.note.NoteService;
 import xxxxxx.yyyyyy.zzzzzz.domain.service.user.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Map;
 
 
 @Controller
@@ -43,6 +47,10 @@ public class BoardController {
             CardService cardService = (CardService) context.getBean("cardService");
             ArrayList<Card> cards = cardService.getCards(Integer.valueOf(id_board));
             model.addAttribute("cards", cards);
+
+            Map<Integer,ArrayList<Note>> cardsWithNotes = cardService.getCardsWithNotes(Integer.valueOf(id_board));
+            model.addAttribute("cardswithnotes", cardsWithNotes);
+
         }
     return "board/board";
     }
@@ -88,4 +96,23 @@ public class BoardController {
         String referer = request.getHeader("Referer");
         return "redirect:"+ referer;
     }
+
+    @RequestMapping(value = "/deleteNote", method = RequestMethod.GET)
+    public String deleteNote(Model model, HttpServletRequest request, @RequestParam("id") String noteId){
+        NoteService noteService = (NoteService) context.getBean("noteService");
+        noteService.deleteNote(Integer.parseInt(noteId));
+
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
+    }
+
+    @RequestMapping(value = "/replace", method = RequestMethod.GET)
+    public String replace(Model model, HttpServletRequest request, @RequestParam("id") String noteId, @RequestParam("x") String x, @RequestParam("y") String y){
+        CardService cardService = (CardService) context.getBean("cardService");
+        cardService.replaceCard(Integer.parseInt(noteId),x,y);
+
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
+    }
+
 }

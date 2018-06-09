@@ -33,4 +33,12 @@ public class NoteDAO {
         getJdbcTemplate().update(sqlinsert,new Object[]{text,"", position, cardId,date ,date});
         return true;
     }
+
+    public boolean deleteNote(int idNote) {
+        String deleteQuery2 = "DELETE FROM note WHERE NOTE_ID = ?";
+        getJdbcTemplate().update(deleteQuery2,idNote);
+
+        return true;
+    }
+
 }

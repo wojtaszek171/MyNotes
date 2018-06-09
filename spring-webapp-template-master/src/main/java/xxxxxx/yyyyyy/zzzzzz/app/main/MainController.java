@@ -2,8 +2,10 @@ package xxxxxx.yyyyyy.zzzzzz.app.main;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -15,6 +17,9 @@ import xxxxxx.yyyyyy.zzzzzz.domain.service.board.BoardService;
 import xxxxxx.yyyyyy.zzzzzz.domain.service.user.UserDAO;
 import xxxxxx.yyyyyy.zzzzzz.domain.service.user.UserServiceImpl;
 import org.springframework.security.core.userdetails.User;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -67,5 +72,6 @@ public class MainController {
 
         return "redirect:/main";
     }
+
 
 }

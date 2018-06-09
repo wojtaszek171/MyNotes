@@ -23,7 +23,7 @@
 			</ul>
             <ul style="float: right" class="nav navbar-nav">
                 <li><a href="/main?userId=<%=id%>"><%=username%></a></li>
-				<li style="line-height: 50px"><img style="height: 30px" src="../res/media/logout.png" onclick=""></li>
+				<li style="line-height: 50px"><a href="./logout"><img style="height: 30px" src="../res/media/logout.png"></a></li>
             </ul>
 		</div>
 

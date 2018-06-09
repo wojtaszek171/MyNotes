@@ -19,4 +19,8 @@ public class NoteService {
     public boolean addNote(int i, Note note) {
         return getCardDAO().addNote(i, note);
     }
+
+    public boolean deleteNote(int i) {
+        return getCardDAO().deleteNote(i);
+    }
 }

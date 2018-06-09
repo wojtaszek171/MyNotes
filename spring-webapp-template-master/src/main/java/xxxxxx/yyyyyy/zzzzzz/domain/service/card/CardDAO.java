@@ -10,10 +10,7 @@ import xxxxxx.yyyyyy.zzzzzz.domain.model.Card;
 import xxxxxx.yyyyyy.zzzzzz.domain.model.Note;
 import xxxxxx.yyyyyy.zzzzzz.domain.service.board.BoardDAO;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CardDAO {
 
@@ -52,6 +49,8 @@ public class CardDAO {
             card.setColor((String) row.get("CARD_COLOR"));
             card.setId_board((int) row.get("ID_BOARD"));
             card.setId((int) row.get("CARD_ID"));
+            card.setX((String) row.get("CARD_X"));
+            card.setY((String) row.get("CARD_Y"));
 
             cards.add(card);
         }
@@ -68,6 +67,8 @@ public class CardDAO {
             card.setColor((String) row.get("CARD_COLOR"));
             card.setId_board((int) row.get("ID_BOARD"));
             card.setId((int) row.get("CARD_ID"));
+            card.setX((String) row.get("CARD_X"));
+            card.setY((String) row.get("CARD_Y"));
         }
         return card;
     }
@@ -77,10 +78,48 @@ public class CardDAO {
         if(card.getId()!=null){
             SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             String deleteQuery = "DELETE FROM card WHERE CARD_ID = ?";
+            String deleteQuery2 = "DELETE FROM note WHERE ID_CARD = ?";
             getJdbcTemplate().update(deleteQuery,idCard);
+            getJdbcTemplate().update(deleteQuery2,idCard);
             return true;
         }
 
         return false;
+    }
+
+    public Map<Integer,ArrayList<Note>> getCardsWithNotes(Integer idboard) {
+        HashMap<Integer,ArrayList<Note>> cards = new HashMap<>();
+
+        SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String selectAllSql = "SELECT CARD_ID FROM card WHERE ID_BOARD = ?";
+        List<Map<String, Object>> rows = getJdbcTemplate().queryForList(selectAllSql, idboard);
+
+        for (Map row : rows) {
+            Integer cardId;
+            cardId = (int) row.get("CARD_ID");
+            String selectAllSql2 = "SELECT * FROM note WHERE ID_CARD = ?";
+            List<Map<String, Object>> rows2 = getJdbcTemplate().queryForList(selectAllSql2, cardId);
+            ArrayList<Note> notes = new ArrayList<Note>();
+            Map<Integer,Object> cardss = null;
+            for (Map row2 : rows2) {
+                Note note = new Note();
+                note.setId((int) row2.get("NOTE_ID"));
+                note.setText((String) row2.get("NOTE_TEXT"));
+                note.setPosition((int) row2.get("NOTE_POSITION"));
+
+                if(note!=null)
+                notes.add(note);
+            }
+            cards.put(cardId,notes);
+
+        }
+        return cards;
+
+    }
+
+    public boolean replaceCard(int i, String x, String y) {
+        String updateQuery = "UPDATE card SET CARD_X=?, CARD_Y=? WHERE CARD_ID = ?";
+        getJdbcTemplate().update(updateQuery,new Object[]{x,y,i});
+        return true;
     }
 }
